@@ -6,10 +6,10 @@ import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
 
-public class WordCountReducer extends Reducer<Text,IntWritable,Text,IntWritable>{
+public class WordCountReducer extends Reducer<CustomWritable,IntWritable,CustomWritable,IntWritable>{
 
 	@Override
-	protected void reduce(Text key, Iterable<IntWritable> value,
+	protected void reduce(CustomWritable key, Iterable<IntWritable> value,
 			Context context)
 			throws IOException, InterruptedException {
 		

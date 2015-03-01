@@ -1,0 +1,7 @@
+(abc,abc)	2
+(abc,def)	2
+(abc,efg)	1
+(def,def)	1
+(def,efg)	1
+(ffh,abc)	1
+(ffh,gij)	1

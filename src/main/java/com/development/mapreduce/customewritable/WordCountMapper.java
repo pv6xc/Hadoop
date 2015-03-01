@@ -9,10 +9,8 @@ import org.apache.hadoop.mapreduce.Mapper;
 import java.io.IOException;
 
 public class WordCountMapper extends
-		Mapper<LongWritable, Text, NullWritable, NullWritable> {
-    enum JobCounter{
-        counters
-    }
+		Mapper<LongWritable, Text, CustomWritable, IntWritable> {
+
 
 	@Override
 	protected void map(LongWritable key, Text value,Context context)
@@ -23,11 +21,8 @@ public class WordCountMapper extends
 		IntWritable one = new IntWritable(1);
 		String line = value.toString();
 		String[] words = line.split(" ");
-		for (int i = 0; i < words.length; i++) {
-			context.getCounter(JobCounter.counters).increment(1);
-		}	
+            context.write(new CustomWritable(words[0],words[1]),one);
 
-		
 	}
 
 }
