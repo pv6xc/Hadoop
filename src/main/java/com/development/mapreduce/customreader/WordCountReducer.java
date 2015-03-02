@@ -1,14 +1,15 @@
-package com.development.mapreduce.customewritable;
+package com.development.mapreduce.customreader;
 
 import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
 
-public class WordCountReducer extends Reducer<CustomWritableComparable,IntWritable,CustomWritableComparable,IntWritable>{
+public class WordCountReducer extends Reducer<Text,IntWritable,Text,IntWritable>{
 
 	@Override
-	protected void reduce(CustomWritableComparable key, Iterable<IntWritable> value,
+	protected void reduce(Text key, Iterable<IntWritable> value,
 			Context context)
 			throws IOException, InterruptedException {
 		

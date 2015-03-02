@@ -1,10 +1,9 @@
-package com.development.mapreduce.customewritable;
+package com.development.mapreduce.wordcount;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -27,10 +26,9 @@ public class WordCountDriver extends Configured implements Tool {
 		Job job = new Job(getConf());
 		job.setJarByClass(WordCountDriver.class);
 		job.setJobName(this.getClass().getName());
+        job.setNumReduceTasks(0);
 		job.setMapperClass(WordCountMapper.class);
-        job.setReducerClass(WordCountReducer.class);
-        job.setOutputKeyClass(CustomWritableComparable.class);
-        job.setOutputValueClass(IntWritable.class);
+
 		FileInputFormat.setInputPaths(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 

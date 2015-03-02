@@ -9,7 +9,7 @@ import java.io.IOException;
 /**
  * Created by achilles on 01/03/15.
  */
-public class CustomWritable implements WritableComparable<CustomWritable>{
+public class CustomWritableComparable implements WritableComparable<CustomWritableComparable>{
 
     String left;
     String right;
@@ -17,11 +17,11 @@ public class CustomWritable implements WritableComparable<CustomWritable>{
     /**
      * Empty constructor for serialization
      */
-    public CustomWritable() {
+    public CustomWritableComparable() {
 
     }
 
-    public CustomWritable(String left, String right) {
+    public CustomWritableComparable(String left, String right) {
         this.left=left;
         this.right=right;
     }
@@ -33,7 +33,7 @@ public class CustomWritable implements WritableComparable<CustomWritable>{
      * @return
      */
     @Override
-    public int compareTo(CustomWritable other) {
+    public int compareTo(CustomWritableComparable other) {
 
         int ret = this.left.compareTo(other.left);
         if(ret==0)
@@ -81,7 +81,7 @@ public class CustomWritable implements WritableComparable<CustomWritable>{
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
 
-        CustomWritable that = (CustomWritable) o;
+        CustomWritableComparable that = (CustomWritableComparable) o;
 
         if (left != null ? !left.equals(that.left) : that.left != null) return false;
         if (right != null ? !right.equals(that.right) : that.right != null) return false;

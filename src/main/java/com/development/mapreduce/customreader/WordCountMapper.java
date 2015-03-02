@@ -1,15 +1,18 @@
-package com.development.mapreduce.customewritable;
+package com.development.mapreduce.customreader;
 
 import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.NullWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 
 public class WordCountMapper extends
-		Mapper<LongWritable, Text, CustomWritableComparable, IntWritable> {
-
+		Mapper<LongWritable, Text, NullWritable, NullWritable> {
+    enum JobCounter{
+        counters
+    }
 
 	@Override
 	protected void map(LongWritable key, Text value,Context context)
@@ -20,8 +23,11 @@ public class WordCountMapper extends
 		IntWritable one = new IntWritable(1);
 		String line = value.toString();
 		String[] words = line.split(" ");
-            context.write(new CustomWritableComparable(words[0],words[1]),one);
+		for (int i = 0; i < words.length; i++) {
+			context.getCounter(JobCounter.counters).increment(1);
+		}	
 
+		
 	}
 
 }

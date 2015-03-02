@@ -1,11 +1,9 @@
-package com.developerment.mapreduce.wordcount;
+package com.development.mapreduce.customreader;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.conf.Configured;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
-import org.apache.hadoop.io.IntWritable;
-import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
@@ -30,7 +28,7 @@ public class WordCountDriver extends Configured implements Tool {
 		job.setJobName(this.getClass().getName());
         job.setNumReduceTasks(0);
 		job.setMapperClass(WordCountMapper.class);
-
+        job.setInputFormatClass(CustomFileInputFormat.class);
 		FileInputFormat.setInputPaths(job, new Path(args[0]));
 		FileOutputFormat.setOutputPath(job, new Path(args[1]));
 
