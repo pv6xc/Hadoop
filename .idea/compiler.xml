@@ -26,5 +26,8 @@
         <module name="MapReduce" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="MapReduce" target="1.5" />
+    </bytecodeTargetLevel>
   </component>
 </project>
